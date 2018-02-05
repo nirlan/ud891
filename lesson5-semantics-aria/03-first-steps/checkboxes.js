@@ -34,17 +34,19 @@
   };
 
   Checkbox.prototype.toggle = function() {
+
     if (this.el.hasAttribute('checked')) {
       this.el.removeAttribute('checked');
-
-      // Hmm.
-
+      if (this.el.hasAttribute('aria-checked')) {
+      this.el.setAttribute('aria-checked', 'false');
+      }
     } else {
-      this.el.setAttribute('checked', '');
-
-      // Hmmmmm.
-
+      this.el.setAttribute('checked', '')
+      if (this.el.hasAttribute('aria-checked')) {
+      this.el.setAttribute('aria-checked', 'true');
+      }
     }
+
   };
 
   var checkboxes = slice(document.querySelectorAll('.checkbox'));
